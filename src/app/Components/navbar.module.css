@@ -1,0 +1,99 @@
+.underlineAnimation {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.underlineAnimation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.underlineAnimation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.search {
+  width: 100%;
+  height: 0;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 5;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav button {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the alpha value (0.5) to control the transparency */
+  z-index: 1; /* Adjust the z-index to make sure it covers other elements */
+}
