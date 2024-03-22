@@ -9,14 +9,13 @@ const BubbleSortViz = () => {
   const [isSortedComplete, setIsSortedComplete] = useState(false);
   const [isSwapped, setIsSwapped] = useState(false);
   const [i, setI] = useState(0);
-
-  const data = [5, 3, 8, 10, 4, 2].map((d, i) => ({
-    value: d,
-    index: i,
-    position: i,
-  }));
+  const [data, setData] = useState(
+    [5, 3, 8, 10, 4, 2].map((d, i) => ({ value: d, index: i, position: i }))
+  );
 
   useEffect(() => {
+    if (!visualizationRef.current) return;
+
     const width = 450;
     const height = 150; // Increased for visibility of the downward arrow
 
@@ -37,8 +36,6 @@ const BubbleSortViz = () => {
       // Adjust the initial position of the pointer
       .attr("transform", `translate(${30}, ${10})`);
 
-    render();
-
     // Remember to cleanup on component unmount
     return () => {
       // Remove svg or any other elements added to the DOM
@@ -46,9 +43,13 @@ const BubbleSortViz = () => {
     };
   }, []);
 
+  useEffect(() => {
+    render();
+    console.log(data);
+  }, [data, i, iteration]); // Re-render on data, iteration, and i change
+
   const render = () => {
     const svg = d3.select(visualizationRef.current).select("svg");
-
     svg
       .selectAll("circle")
       .data(data, (d) => d.index)
@@ -72,14 +73,14 @@ const BubbleSortViz = () => {
       .text((d) => d.value);
   };
 
-  const swapElements = () => {
-    if (data[i].value > data[i + 1].value) {
-      let tmp = data[i + 1].position;
-      data[i + 1].position = data[i].position;
-      data[i].position = tmp;
+  const swapElements = (newData, idx1, idx2) => {
+    if (newData[idx1].value > newData[idx2].value) {
+      let tmp = newData[idx2].position;
+      newData[idx2].position = newData[idx1].position;
+      newData[idx1].position = tmp;
 
-      [data[i], data[i + 1]] = [data[i + 1], data[i]];
-      setIsSwapped(true);
+      [newData[idx1], newData[idx2]] = [newData[idx2], newData[idx1]];
+      // isSwapped = true;
       // swapsInThisIteration = true;
     }
   };
@@ -92,14 +93,17 @@ const BubbleSortViz = () => {
       }
     }
     alert("Sorting Completed");
-    document.getElementById("nextStep").disabled = true; // Disable the button after sorting is complete
     return true;
   };
 
   const handleNextStep = () => {
-    if (i < data.length - 1) {
-      swapElements();
-      render(); // Update the visualization after swapping
+    let newData = [...data];
+
+    if (i < newData.length - 1) {
+      if (newData[i].value > newData[i + 1].value) {
+        swapElements(newData, i, i + 1);
+      }
+
       let targetPosition =
         data[i].value > data[i + 1].value
           ? data[i].position
@@ -108,13 +112,17 @@ const BubbleSortViz = () => {
         .transition()
         .duration(500)
         .attr("transform", `translate(${targetPosition * 60 + 50}, ${10})`);
-      setIsSwapped(false);
+
       setI((prev) => prev + 1);
-    } else if (!isSorted()) {
+    } else {
+      if (isSorted()) {
+        setIsSortedComplete(true);
+      }
       setI(0);
       setIteration((prev) => prev + 1);
-      d3.select("#iterationCounter").text(`Iteration: ${iteration}`);
     }
+
+    setData(newData);
   };
 
   return (
@@ -125,14 +133,15 @@ const BubbleSortViz = () => {
         id="iterationCounter"
         style={{ textAlign: "center", marginBottom: "10px" }}
       >
-        Iteration: 0
+        Iteration: {iteration}
       </div>
       <div ref={visualizationRef} id="visualization"></div>
       {/* Move the button inside the component */}
       <div
-        className="flex justify-center items-center cursor-pointer"
-        onClick={handleNextStep}
-        id="nextStep"
+        className={`flex justify-center items-center cursor-pointer ${
+          isSortedComplete ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+        onClick={!isSortedComplete ? handleNextStep : undefined}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
