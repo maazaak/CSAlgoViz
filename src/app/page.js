@@ -20,13 +20,13 @@ export default function Home() {
           <div className="flex justify-between items-center w-2/3 mt-10">
             <button
               type="button"
-              class="text-[#f7f8d7] bg-[#f0916c] w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="text-[#f7f8d7] bg-[#f0916c] w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               Teachers
             </button>
             <button
               type="button"
-              class="text-[#f7f8d7] bg-[#f0916c] w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="text-[#f7f8d7] bg-[#f0916c] w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               Students
             </button>
@@ -39,19 +39,25 @@ export default function Home() {
         </h1>
         <div className="flex gap-32 mt-32 justify-between items-center">
           <div className="flex flex-col justify-center items-center">
-            <img src="./Interactive Visualizations.png" />
+            <img
+              src="./Interactive Visualizations.png"
+              className="object-cover w-40"
+            />
             <h1 className="text-3xl text-[#f0916c] mt-5">
               Interactive Visualizations
             </h1>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <img src="./Personalized Learning Paths.png" />
+            <img
+              src="./Personalized Learning Paths.png"
+              className="object-cover w-40"
+            />
             <h1 className="text-3xl text-[#f0916c] mt-5">
               Personalized Learning Paths
             </h1>
           </div>{" "}
           <div className="flex flex-col justify-center items-center">
-            <img src="./Real-Time Feedback.png" />
+            <img src="./Real-Time Feedback.png" className="object-cover w-40" />
             <h1 className="text-3xl text-[#f0916c] mt-5">Real-Time Feedback</h1>
           </div>
         </div>

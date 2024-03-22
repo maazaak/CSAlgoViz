@@ -48,17 +48,17 @@ const Navbar = () => {
             <div
               onMouseLeave={toggleDropdown}
               id="dropdown"
-              className="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 "
+              className="z-10 absolute  divide-y bg-[#f0916c] divide-gray-100 rounded-lg shadow w-44 "
             >
               <ul
-                className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                className="py-2 text-sm text-[#f7f8d7]"
                 aria-labelledby="dropdownDefaultButton"
               >
                 <li>
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b] "
                     >
                       Artificial Intelligence
                     </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b] "
                     >
                       Computer Architecture
                     </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
                     >
                       Software Engineering
                     </div>
@@ -87,7 +87,7 @@ const Navbar = () => {
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
                     >
                       Databases
                     </div>
@@ -96,7 +96,7 @@ const Navbar = () => {
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
                     >
                       Operating Systems
                     </div>
@@ -104,7 +104,7 @@ const Navbar = () => {
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
                     >
                       Theory of Automata
                     </div>
@@ -112,7 +112,7 @@ const Navbar = () => {
                   <Link href={"/"} className="flex items-center">
                     <div
                       href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
                     >
                       Data Structures
                     </div>
@@ -151,7 +151,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex justify-between gap-10">
-        <a>Login</a>
+        <Link href={"/Dashboard"}>Login</Link>
         <a>
           <div>Sign up</div>
         </a>
