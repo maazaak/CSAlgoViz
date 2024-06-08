@@ -90,7 +90,7 @@ const course = {
           }
         }
       
-        search(value, setHighlightedNode) {
+        search(value, setHighlightedPath) {
           let current = this.root;
           const searchPath = [];
           while (current) {
@@ -104,14 +104,14 @@ const course = {
               current = current.right;
             }
           }
-          this.animateSearch(searchPath, setHighlightedNode);
+          this.animateSearch(searchPath, setHighlightedPath);
           return current;
         }
       
-        animateSearch(searchPath, setHighlightedNode) {
+        animateSearch(searchPath, setHighlightedPath) {
           searchPath.forEach((node, index) => {
             setTimeout(() => {
-              setHighlightedNode(node);
+              setHighlightedPath(prev => [...prev, node]);
             }, index * 1000);
           });
         }
@@ -163,7 +163,7 @@ const course = {
           }
         }
       
-        bfs(value, setHighlightedNode) {
+        bfs(value, setHighlightedPath) {
           const queue = [this.root];
           const searchPath = [];
           while (queue.length) {
@@ -175,14 +175,14 @@ const course = {
             if (node.left) queue.push(node.left);
             if (node.right) queue.push(node.right);
           }
-          this.animateSearch(searchPath, setHighlightedNode);
+          this.animateSearch(searchPath, setHighlightedPath);
           return searchPath[searchPath.length - 1];
         }
       
-        animateSearch(searchPath, setHighlightedNode) {
+        animateSearch(searchPath, setHighlightedPath) {
           searchPath.forEach((node, index) => {
             setTimeout(() => {
-              setHighlightedNode(node);
+              setHighlightedPath(prev => [...prev, node]);
             }, index * 1000);
           });
         }
