@@ -7,6 +7,7 @@ import BinarySearchTreeVisualization from "@/app/Components/BinarySearchTreeVisu
 import BinarySearchTreeBFSVisualization from "@/app/Components/BinarySearchTreeBFSVisualization";
 import Link from "next/link";
 import React from "react";
+import { useSession } from "next-auth/react";
 
 const course = {
   title: "Data Structures",
@@ -47,7 +48,7 @@ const course = {
                     However, its simplicity and the fact that it makes no more
                     than \(n-1\) swaps in the best case (when the list is
                     already sorted) can make it useful for small datasets or as
-                    an educational tool to introduce sorting algorithms.`
+                    an educational tool to introduce sorting algorithms.`,
     },
     {
       name: "Binary Search Tree",
@@ -120,7 +121,7 @@ const course = {
       explanation: `A Binary Search Tree (BST) is a node-based binary tree data structure which has the following properties:
                     - The left subtree of a node contains only nodes with keys less than the node’s key.
                     - The right subtree of a node contains only nodes with keys greater than the node’s key.
-                    - The left and right subtree each must also be a binary search tree.`
+                    - The left and right subtree each must also be a binary search tree.`,
     },
     {
       name: "Binary Search Tree BFS",
@@ -190,20 +191,26 @@ const course = {
       visualizationComponent: BinarySearchTreeBFSVisualization,
       explanation: `Breadth First Search (BFS) is an algorithm for traversing or searching tree or graph data structures. 
                     It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key') 
-                    and explores the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.`
-    }
+                    and explores the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.`,
+    },
   ],
 };
 
 const Page = ({ params }) => {
-  const [currentConcept, setCurrentConcept] = React.useState(course.concepts[0]);
+  const [currentConcept, setCurrentConcept] = React.useState(
+    course.concepts[0]
+  );
+  const session = useSession();
+
+  if (session.status === "loading") return <div>Loading...</div>;
+  if (session.status === "unauthenticated") return <div>Unauthenticated</div>;
 
   return (
     <>
-      <section className="text-[#f7f8d7]">
+      <section className="text-secondary">
         <div>
-          <section className="pl-20 h-32 bg-gray-300 flex justify-start items-center text-black text-3xl font-semibold">
-            ranamaaz2001
+          <section className="pl-20 h-32 bg-gray-300 flex justify-start items-center text-secondary text-3xl font-semibold">
+            {session?.data?.user?.name}
           </section>
           <section className="grid grid-cols-12 py-10 px-5">
             <div className="col-span-2 pt-10 flex flex-col justify-start gap-10 items-end border-r border-gray-800">
@@ -216,7 +223,7 @@ const Page = ({ params }) => {
                   key={concept.name}
                   onClick={(e) => setCurrentConcept(concept)}
                   className={`text-lg w-2/3 p-2 rounded-sm text-start font-semibold ${
-                    currentConcept.name === concept.name ? "bg-[#c7795a]" : ""
+                    currentConcept.name === concept.name ? "bg-primary" : ""
                   }`}
                 >
                   {concept.name}
@@ -224,32 +231,37 @@ const Page = ({ params }) => {
               ))}
             </div>
             <section className="col-span-9">
-              <h1 className="text-6xl text-center font-bold text-[#f0916c] ">
+              <h1 className="text-6xl text-center font-bold text-secondary ">
                 {currentConcept.name}
               </h1>
 
               <div className="mt-14 gap-10 grid grid-cols-2">
                 <div className="col-span-1">
-                  <h1 className="text-3xl text-center font-bold text-[#f0916c] ">
+                  <h1 className="text-3xl text-center font-bold text-secondary ">
                     Code
                   </h1>
                   <div className="pl-10">
                     <pre className="language-js">
-                      <code className="language-js ">{currentConcept.code}</code>
+                      <code className="language-js ">
+                        {currentConcept.code}
+                      </code>
                     </pre>
                     <PrismLoader />
                   </div>
                 </div>
                 <div className="col-span-1">
-                  <h1 className="text-3xl text-center font-bold text-[#f0916c] ">
+                  <h1 className="text-3xl text-center font-bold text-secondary ">
                     Visualizations
                   </h1>
                   <div className="">
-                    {currentConcept.visualizationComponent && React.createElement(currentConcept.visualizationComponent)}
+                    {currentConcept.visualizationComponent &&
+                      React.createElement(
+                        currentConcept.visualizationComponent
+                      )}
                   </div>
                 </div>
                 <div className="col-span-2">
-                  <h1 className="text-3xl text-center font-bold text-[#f0916c] ">
+                  <h1 className="text-3xl text-center font-bold text-secondary ">
                     Explanation
                   </h1>
                   <div className="p-5 mt-10 bg-[#272822]">

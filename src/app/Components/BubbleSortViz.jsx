@@ -127,9 +127,9 @@ const BubbleSortViz = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-[#f0916c]">Bubble Sort</h1>
+      <h1 className="font-bold text-secondary">Bubble Sort</h1>
       <div
-        className="font-bold text-[#f0916c]"
+        className="font-bold text-secondary"
         id="iterationCounter"
         style={{ textAlign: "center", marginBottom: "10px" }}
       >

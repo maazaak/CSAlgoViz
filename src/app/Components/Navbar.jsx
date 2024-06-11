@@ -1,17 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./navbar.module.css";
 import Link from "next/link";
+import { signOut, useSession, signIn } from "next-auth/react";
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = React.useState(false);
+  const session = useSession();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
+  const loginWithGoogle = async () => {
+    try {
+      await signIn("google");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="flex justify-around items-center w-full bg-[#f0916c] text-[#f7f8d7] font-semibold h-24 text-lg">
+    <div className="flex justify-around items-center w-full bg-primary text-secondary font-semibold h-24 text-lg">
       <Link href={"/"} className="flex justify-center items-center">
         <img style={{ width: "80px", alignSelf: "center" }} src={"logo.png"} />
       </Link>
@@ -48,72 +58,51 @@ const Navbar = () => {
             <div
               onMouseLeave={toggleDropdown}
               id="dropdown"
-              className="z-10 absolute  divide-y bg-[#f0916c] divide-gray-100 rounded-lg shadow w-44 "
+              className="z-10 absolute  divide-y bg-primary divide-gray-100 rounded-lg shadow w-44 "
             >
               <ul
-                className="py-2 text-sm text-[#f7f8d7]"
+                className="py-2 text-sm text-secondary"
                 aria-labelledby="dropdownDefaultButton"
               >
                 <li>
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b] "
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary ">
                       Artificial Intelligence
                     </div>
                   </Link>
                 </li>
                 <li>
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b] "
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary ">
                       Computer Architecture
                     </div>
                   </Link>
                 </li>
                 <li>
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary">
                       Software Engineering
                     </div>
                   </Link>
 
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary">
                       Databases
                     </div>
                   </Link>
 
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary">
                       Operating Systems
                     </div>
                   </Link>
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary">
                       Theory of Automata
                     </div>
                   </Link>
-                  <Link href={"/"} className="flex items-center">
-                    <div
-                      href="#"
-                      className="block px-4 py-2 hover:bg-[#ca7a5b]"
-                    >
+                  <Link href={"/Dashboard"} className="flex items-center">
+                    <div className="block px-4 py-2 hover:bg-primary">
                       Data Structures
                     </div>
                   </Link>
@@ -126,7 +115,7 @@ const Navbar = () => {
           <input
             type="text"
             id="default-search"
-            className="block w-full p-1 ps-2 placeholder-[#f0916c]  text-lg text-[#f0916c]  border-transparent focus:outline-none focus:border-transparent focus:ring-0 rounded-sm bg-[#f7f8d7] hover:bg-gray-200 transition-all duration-75  "
+            className="block w-full p-1 ps-2 placeholder-primary  text-lg text-primary  border-transparent focus:outline-none focus:border-transparent focus:ring-0 rounded-sm bg-[#f7f8d7] hover:bg-gray-200 transition-all duration-75  "
             placeholder="Search"
             required
           />
@@ -151,10 +140,20 @@ const Navbar = () => {
       </div>
 
       <div className="flex justify-between gap-10">
-        <Link href={"/Dashboard"}>Login</Link>
-        <a>
-          <div>Sign up</div>
-        </a>
+        {/* <Link href={"/Dashboard"}>Login</Link> */}
+        {session.status === "authenticated" ? (
+          <h1>{session?.data?.user?.name}</h1>
+        ) : (
+          <button onClick={loginWithGoogle}>Login</button>
+        )}
+        {session.status !== "authenticated" ? (
+          <a>
+            {" "}
+            <div>Sign up</div>
+          </a>
+        ) : (
+          <button onClick={signOut}>sign out</button>
+        )}
       </div>
     </div>
   );

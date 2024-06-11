@@ -11,7 +11,7 @@ const Courses = [
       "Graphs, Tress and Heaps",
       "Hash Tables",
       "Binary Search Tree",
-      "Binary Search Tree BFS"
+      "Binary Search Tree BFS",
     ],
   },
   {
@@ -37,7 +37,7 @@ const page = () => {
               </h1>
               <Link
                 href={`/Course/${course.title}`}
-                className="text-[#f7f8d7] bg-[#f0916c] hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                className="text-secondry bg-primary hover:bg-[#c7795a] focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
               >
                 Start
               </Link>
