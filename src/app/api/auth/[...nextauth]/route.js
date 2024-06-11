@@ -11,7 +11,6 @@ export const AuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: "SECRET",
   callbacks: {
     async session({ token, session }) {
       session.user.name = token.name;
