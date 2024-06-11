@@ -4,13 +4,15 @@ import GoogleProvider from "next-auth/providers/google";
 export const AuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId:
+        "474389433861-1eqir91rt9hjujeqn5vnq280n2030r3d.apps.googleusercontent.com",
+      clientSecret: "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",
     }),
   ],
   session: {
     strategy: "jwt",
   },
+  secret: "SECRET",
   callbacks: {
     async session({ token, session }) {
       session.user.name = token.name;
