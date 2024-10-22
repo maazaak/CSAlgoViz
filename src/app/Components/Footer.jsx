@@ -22,7 +22,7 @@ const FooterSection = ({ title, children }) => (
 const Footer = () => {
   return (
     <div className="mt-10">
-      <div className="bg-[#f0916c] text-[#f7f8d7] font-semibold text-lg flex justify-center items-center">
+      <div className="bg-primary text-secondary font-semibold text-lg flex justify-center items-center">
         <div className="grid grid-cols-4 gap-4 m-8">
           <div>
             <div className="flex justify-center items-center mb-12">
@@ -54,7 +54,7 @@ const Footer = () => {
           </FooterSection>
         </div>
       </div>
-      <div className="bg-[#f0916c] text-[#f7f8d7] font-semibold text-lg flex justify-center items-center pb-5">
+      <div className="bg-primary text-secondary font-semibold text-lg flex justify-center items-center pb-5">
         <p>© 2023 CSAlgoViz</p>
       </div>
     </div>

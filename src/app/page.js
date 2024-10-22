@@ -7,12 +7,12 @@ export default function Home() {
         </div>
 
         <div className="col-span-3 w-full h-52">
-          <h1 className="leading-[50px] text-5xl text-[#f7f8d7] flex flex-col mt-20 ">
+          <h1 className="leading-[50px] text-5xl text-secondary flex flex-col mt-20 ">
             <span className="">For every student,</span>
             <span className="">every classroom.</span>
             <span className="">Real results.</span>
           </h1>
-          <p className="w-2/3 mt-12 text-[#f7f8d7]">
+          <p className="w-2/3 mt-12 text-secondary">
             We’re a nonprofit organization with the mission to provide a free,
             world-class education for anyone, anywhere
           </p>
@@ -20,13 +20,13 @@ export default function Home() {
           <div className="flex justify-between items-center w-2/3 mt-10">
             <button
               type="button"
-              className="text-[#f7f8d7] bg-[#f0916c] w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="text-secondary bg-primary w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               Teachers
             </button>
             <button
               type="button"
-              className="text-[#f7f8d7] bg-[#f0916c] w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-[#f0916c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+              className="text-secondary bg-primary w-full hover:bg-[#c7795a] focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >
               Students
             </button>
@@ -34,7 +34,7 @@ export default function Home() {
         </div>
       </section>
       <section className="flex flex-col justify-center mb-40 items-center mt-20">
-        <h1 className="text-6xl font-bold text-[#f0916c] ">
+        <h1 className="text-6xl font-bold text-primary ">
           What CSAlgoViz Offers
         </h1>
         <div className="flex gap-32 mt-32 justify-between items-center">
@@ -43,7 +43,7 @@ export default function Home() {
               src="./Interactive Visualizations.png"
               className="object-cover w-40"
             />
-            <h1 className="text-3xl text-[#f0916c] mt-5">
+            <h1 className="text-3xl text-primary mt-5">
               Interactive Visualizations
             </h1>
           </div>
@@ -52,13 +52,13 @@ export default function Home() {
               src="./Personalized Learning Paths.png"
               className="object-cover w-40"
             />
-            <h1 className="text-3xl text-[#f0916c] mt-5">
+            <h1 className="text-3xl text-primary mt-5">
               Personalized Learning Paths
             </h1>
           </div>{" "}
           <div className="flex flex-col justify-center items-center">
             <img src="./Real-Time Feedback.png" className="object-cover w-40" />
-            <h1 className="text-3xl text-[#f0916c] mt-5">Real-Time Feedback</h1>
+            <h1 className="text-3xl text-primary mt-5">Real-Time Feedback</h1>
           </div>
         </div>
       </section>
