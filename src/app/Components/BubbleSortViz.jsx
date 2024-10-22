@@ -7,8 +7,8 @@ const BubbleSortViz = () => {
   const pointerRef = useRef();
   const [iteration, setIteration] = useState(0);
   const [isSortedComplete, setIsSortedComplete] = useState(false);
-  const [isSwapped, setIsSwapped] = useState(false);
   const [i, setI] = useState(0);
+  const [newElement, setNewElement] = useState(''); // For adding new element
   const [data, setData] = useState(
     [5, 3, 8, 10, 4, 2].map((d, i) => ({ value: d, index: i, position: i }))
   );
@@ -80,8 +80,6 @@ const BubbleSortViz = () => {
       newData[idx1].position = tmp;
 
       [newData[idx1], newData[idx2]] = [newData[idx2], newData[idx1]];
-      // isSwapped = true;
-      // swapsInThisIteration = true;
     }
   };
 
@@ -125,6 +123,26 @@ const BubbleSortViz = () => {
     setData(newData);
   };
 
+  // Function to handle adding a new element
+  const handleAddElement = () => {
+    if (!newElement) return;
+
+    const newData = [
+      ...data,
+      { value: parseInt(newElement), index: data.length, position: data.length },
+    ];
+    setData(newData);
+    setNewElement('');
+  };
+
+  // Function to handle removing the last element
+  const handleRemoveElement = () => {
+    if (data.length > 1) {
+      const newData = data.slice(0, -1);
+      setData(newData);
+    }
+  };
+
   return (
     <div>
       <h1 className="font-bold text-secondary">Bubble Sort</h1>
@@ -136,6 +154,27 @@ const BubbleSortViz = () => {
         Iteration: {iteration}
       </div>
       <div ref={visualizationRef} id="visualization"></div>
+
+      {/* Input for adding new elements */}
+      <div style={{ textAlign: "center", margin: "20px 0" }}>
+  <input
+    type="number"
+    placeholder="Enter new element"
+    value={newElement}
+    onChange={(e) => setNewElement(e.target.value)}
+    style={{ marginBottom: "10px" }} // Adjusted margin for input spacing
+  />
+  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <button onClick={handleAddElement} style={{ marginBottom: "10px" }}>
+      Add Element
+    </button>
+    <button onClick={handleRemoveElement}>
+      Remove Last Element
+    </button>
+  </div>
+</div>
+
+
       {/* Move the button inside the component */}
       <div
         className={`flex justify-center items-center cursor-pointer ${

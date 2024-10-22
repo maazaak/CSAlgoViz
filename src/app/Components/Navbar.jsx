@@ -111,7 +111,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <div class="relative">
+        <div className="relative">
           <input
             type="text"
             id="default-search"
@@ -119,7 +119,7 @@ const Navbar = () => {
             placeholder="Search"
             required
           />
-          <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+          <div className="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
