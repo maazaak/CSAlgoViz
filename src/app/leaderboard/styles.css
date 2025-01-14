@@ -1,0 +1,163 @@
+.leaderboard-container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-container h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.search-input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  border: 1px solid #3a3a3a;
+  padding: 10px;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  background-color: #2e7d32;
+  color: #000;
+  font-weight: bold;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.leaderboard-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.leaderboard-table tr:hover {
+  background-color: #e1e1e1;
+}
+
+.leaderboard-table td {
+  color: #555;
+}
+
+.leaderboard-table tr.highlight-row {
+  background-color: #ffeb3b !important; /* Highlight current user */
+}
+
+.leaderboard-table th:first-child,
+.leaderboard-table td:first-child {
+  width: 10%;
+}
+
+.leaderboard-table th:last-child,
+.leaderboard-table td:last-child {
+  width: 20%;
+}
+.user-details {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px;
+}
+
+.user-details h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.user-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.user-details-table th,
+.user-details-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.user-details-table th {
+  background-color: #3a3a3a;
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.user-details-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user-details-table tr:hover {
+  background-color: #d1e7dd;
+}
+
+.user-details-table td {
+  color: #333;
+}
+
+.user-details button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3a3a3a;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-details button:hover {
+  background-color: #1e1e1e;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-button.active {
+  background-color: #2e7d32;
+}
+
+.pagination-button:hover {
+  background-color: #45a049;
+}

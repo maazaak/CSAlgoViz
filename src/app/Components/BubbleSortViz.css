@@ -1,0 +1,144 @@
+.bubble-sort {
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    margin: 0;
+    text-align: center;
+}
+
+.legend {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px; /* Adjust spacing as needed */
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+.bubble-sort #visualization {
+    position: relative;
+    height: 150px;
+    margin: 20px auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.bubble-sort .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: steelblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: background-color 0.5s;
+}
+
+.bubble-sort .lightgreen {
+    background-color: lightgreen;
+}
+
+.bubble-sort .button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 20px; /* Space below buttons */
+}
+
+.bubble-sort .button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px; /* Rounded corners */
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    gap: 5px; /* Space between icon and text */
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effect */
+}
+
+/* Specific button styles */
+.bubble-sort #startButton {
+    background-color: #007bff; /* Blue background */
+}
+
+.bubble-sort #startButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.bubble-sort #pauseResumeButton {
+    background-color: #ffc107; /* Yellow background */
+}
+
+.bubble-sort #pauseResumeButton:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+}
+
+.bubble-sort #backButton {
+    background-color: #6c757d; /* Gray background */
+}
+
+.bubble-sort #backButton:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+.bubble-sort #forwardButton {
+    background-color: #17a2b8; /* Cyan background */
+}
+
+.bubble-sort #forwardButton:hover {
+    background-color: #138496; /* Darker cyan on hover */
+}
+
+.bubble-sort #restartButton {
+    background-color: #dc3545; /* Red background */
+}
+
+.bubble-sort #restartButton:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.bubble-sort #addElement {
+    background-color: #28a745; /* Green background */
+}
+
+.bubble-sort #addElement:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.bubble-sort #removeElement {
+    background-color: #dc3545; /* Red background */
+}
+
+.bubble-sort #removeElement:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Input box styles */
+.bubble-sort input[type="number"] {
+    padding: 10px;
+    margin: 10px 0; /* Space around the input */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    color: #000; /* Text color */
+    font-size: 16px; /* Font size */
+    width: 150px; /* Fixed width */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Subtle shadow */
+}
+
+.bubble-sort input[type="number"]::placeholder {
+    color: #888; /* Placeholder color */
+}

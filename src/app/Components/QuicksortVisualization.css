@@ -1,0 +1,109 @@
+body {
+    background-color: #1e1e1e;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.circle-default {
+    background-color: lightgrey;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+.circle-sorted-pivot {
+    background-color: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+.circle-left-partition {
+    background-color: lightgreen;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+.circle-right-partition {
+    background-color: lightcoral;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+.circle-checking {
+    background-color: yellow;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+.circle-swapping {
+    background-color: lightblue;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    margin: 5px;
+}
+.iteration {
+    margin-top: 20px;
+}
+.iteration-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+.buttons-container {
+    margin: 20px 0;
+}
+button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#addElement {
+    background-color: #28a745;
+    color: white;
+}
+#removeElement {
+    background-color: #dc3545;
+    color: white;
+}
+#startButton {
+    background-color: #007bff;
+    color: white;
+}
+#pauseButton {
+    background-color: #ffc107;
+    color: white;
+}
+input[type="number"] {
+    padding: 10px;
+    font-size: 14px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: none;
+}

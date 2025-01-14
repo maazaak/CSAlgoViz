@@ -1,0 +1,160 @@
+.circle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: lightblue;
+    display: inline-block;
+    margin: 5px;
+    font-weight: bold;
+  }
+  
+  .green {
+    background-color: green;
+    color: white;
+  }
+  
+  .yellow {
+    background-color: yellow;
+    color: black;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .button:hover {
+    transform: scale(1.05); /* Add a slight zoom effect on hover */
+  }
+  
+  .button:active {
+    transform: scale(0.95); /* Add a slight shrink effect when clicked */
+  }
+  
+  .button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  #addElement {
+    background-color: #28a745; /* Green */
+  }
+  
+  #addElement:hover {
+    background-color: #218838;
+  }
+  
+  #removeElement {
+    background-color: #dc3545; /* Red */
+  }
+  
+  #removeElement:hover {
+    background-color: #c82333;
+  }
+  
+  #startButton {
+    background-color: #007bff; /* Blue */
+  }
+  
+  #startButton:hover {
+    background-color: #0056b3;
+  }
+  
+  #pauseResumeButton {
+    background-color: #ffc107; /* Yellow */
+    color: black;
+  }
+  
+  #pauseResumeButton:hover {
+    background-color: #e0a800;
+  }
+  
+  #backButton,
+  #forwardButton,
+  #restartButton {
+    background-color: #0c2e52; /* Blue */
+  }
+  
+  #backButton:hover,
+  #forwardButton:hover,
+  #restartButton:hover {
+    background-color: #0056b3;
+  }
+  
+  input {
+    margin: 10px 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 180px;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  #visualization {
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  #iterationCounter {
+    margin: 10px auto;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .insertion-sort {
+    background-color: #1e1e1e;
+    padding: 20px;
+    width: 500px;
+    margin: auto;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  /* Adding active state styling for visualization */
+  .circle.active {
+    border: 2px solid #ffeb3b;
+    background-color: #ff5722;
+    animation: pulse 1s infinite alternate;
+  }
+  
+  /* Keyframe for pulsing animation */
+  @keyframes pulse {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+  

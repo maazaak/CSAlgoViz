@@ -1,0 +1,65 @@
+/* Base styles for the Code Editor */
+.editor-container {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Light Theme */
+  .light-theme {
+    background-color: #f9f9f9; /* Light background */
+    color: #333; /* Dark text */
+  }
+  
+  .light-theme .editor-header {
+    background-color: #e2e8f0; /* Header background */
+    color: #1e293b; /* Header text */
+  }
+  
+  .light-theme .editor {
+    background-color: #ffffff; /* Editor background */
+    color: #333; /* Editor text */
+  }
+  
+  .light-theme .editor-line-numbers {
+    color: #888; /* Line numbers */
+  }
+  
+  .light-theme .editor-cursor {
+    border-left: 2px solid #4ade80; /* Cursor color */
+  }
+  
+  .light-theme .editor-selection {
+    background-color: #4ade8070; /* Selection background */
+  }
+  
+  /* Dark Theme */
+  .dark-theme {
+    background-color: #1e293b; /* Dark background */
+    color: #e2e8f0; /* Light text */
+  }
+  
+  .dark-theme .editor-header {
+    background-color: #2d3748; /* Header background */
+    color: #f9f9f9; /* Header text */
+  }
+  
+  .dark-theme .editor {
+    background-color: #1e293b; /* Editor background */
+    color: #e2e8f0; /* Editor text */
+  }
+  
+  .dark-theme .editor-line-numbers {
+    color: #4ade80; /* Line numbers */
+  }
+  
+  .dark-theme .editor-cursor {
+    border-left: 2px solid #4ade80; /* Cursor color */
+  }
+  
+  .dark-theme .editor-selection {
+    background-color: #4ade8070; /* Selection background */
+  }
+  

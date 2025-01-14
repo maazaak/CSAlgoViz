@@ -1,164 +1,186 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
+import React, { useEffect, useRef } from "react";
+import './BubbleSortViz.css';
 
 const BubbleSortViz = () => {
-  const visualizationRef = useRef();
-  const pointerRef = useRef();
-  const [iteration, setIteration] = useState(0);
-  const [isSortedComplete, setIsSortedComplete] = useState(false);
-  const [isSwapped, setIsSwapped] = useState(false);
-  const [i, setI] = useState(0);
-  const [data, setData] = useState(
-    [5, 3, 8, 10, 4, 2].map((d, i) => ({ value: d, index: i, position: i }))
-  );
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    if (!visualizationRef.current) return;
+    // HTML structure as a string
+    const htmlContent = `
+      <h1>Bubble Sort</h1>
+      <div id="iterationCounter">Iteration: 0</div>
+      <div id="visualization"></div>
+      <input type="number" id="newElement" placeholder="Enter new element">
+      <div class="button-container">
+          <button class="button" id="addElement">Add Element</button>
+          <button class="button" id="removeElement">Remove Last Element</button>
+          <button class="button" id="startButton">Start</button>
+          <button class="button" id="pauseResumeButton">Pause</button>
+          <button class="button" id="backButton" style="display: none;">Back</button> <!-- Initially hidden -->
+          <button class="button" id="forwardButton" style="display: none;">Forward</button> <!-- Initially hidden -->
+          <button class="button" id="restartButton" style="display: none;">Restart</button> <!-- Initially hidden -->
+      </div>
+    `;
 
-    const width = 450;
-    const height = 150; // Increased for visibility of the downward arrow
+    // Inject HTML content into the component
+    containerRef.current.innerHTML = htmlContent;
 
-    const svg = d3
-      .select(visualizationRef.current)
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .style("display", "block") // Centering the SVG
-      .style("margin", "auto");
+    // Add your existing JavaScript code here
+    let iteration = 0;
+    let isSortedComplete = false;
+    let i = 0;
+    let data = [5, 3, 8, 10, 4, 2];
+    let intervalId;
+    let isPaused = false;
+    let states = [];
+    let currentStateIndex = -1;
 
-    // Downward arrow for the pointer
-    const pointerPath = "M0,0 L10,10 L5,5 L5,-10 L-5,-10 L-5,5 L-10,10 Z"; // Downward arrow shape
-    pointerRef.current = svg
-      .append("path")
-      .attr("d", pointerPath)
-      .attr("fill", "red")
-      // Adjust the initial position of the pointer
-      .attr("transform", `translate(${30}, ${10})`);
+    const visualization = document.getElementById('visualization');
+    const iterationCounter = document.getElementById('iterationCounter');
+    const newElementInput = document.getElementById('newElement');
+    const addElementButton = document.getElementById('addElement');
+    const removeElementButton = document.getElementById('removeElement');
+    const startButton = document.getElementById('startButton');
+    const pauseResumeButton = document.getElementById('pauseResumeButton');
+    const restartButton = document.getElementById('restartButton');
+    const backButton = document.getElementById('backButton');
+    const forwardButton = document.getElementById('forwardButton');
 
-    // Remember to cleanup on component unmount
-    return () => {
-      // Remove svg or any other elements added to the DOM
-      svg.selectAll("*").remove();
+    const render = () => {
+      visualization.innerHTML = '';
+      data.forEach((value, index) => {
+        const circle = document.createElement("div");
+        circle.className = "circle";
+        circle.textContent = value;
+        if (index < i) {
+          circle.classList.add('lightgreen');
+        }
+        visualization.appendChild(circle);
+      });
+      iterationCounter.textContent = `Iteration: ${iteration}`;
     };
-  }, []);
 
-  useEffect(() => {
-    render();
-    console.log(data);
-  }, [data, i, iteration]); // Re-render on data, iteration, and i change
-
-  const render = () => {
-    const svg = d3.select(visualizationRef.current).select("svg");
-    svg
-      .selectAll("circle")
-      .data(data, (d) => d.index)
-      .join("circle")
-      .transition()
-      .duration(500)
-      .attr("r", 20)
-      .attr("cx", (d) => d.position * 60 + 50) // Adjust spacing for centering
-      .attr("cy", 80) // Lower circles to accommodate arrow
-      .attr("fill", "steelblue");
-
-    svg
-      .selectAll("text")
-      .data(data, (d) => d.index)
-      .join("text")
-      .transition()
-      .duration(500)
-      .attr("x", (d) => d.position * 60 + 50) // Adjust spacing for centering
-      .attr("y", 85) // Align text with circles
-      .attr("text-anchor", "middle")
-      .text((d) => d.value);
-  };
-
-  const swapElements = (newData, idx1, idx2) => {
-    if (newData[idx1].value > newData[idx2].value) {
-      let tmp = newData[idx2].position;
-      newData[idx2].position = newData[idx1].position;
-      newData[idx1].position = tmp;
-
-      [newData[idx1], newData[idx2]] = [newData[idx2], newData[idx1]];
-      // isSwapped = true;
-      // swapsInThisIteration = true;
-    }
-  };
-
-  // Check if the array is sorted
-  const isSorted = () => {
-    for (let j = 0; j < data.length - 1; j++) {
-      if (data[j].value > data[j + 1].value) {
-        return false;
+    const swapElements = (idx1, idx2) => {
+      if (data[idx1] > data[idx2]) {
+        const temp = data[idx1];
+        data[idx1] = data[idx2];
+        data[idx2] = temp;
       }
-    }
-    alert("Sorting Completed");
-    return true;
-  };
+    };
 
-  const handleNextStep = () => {
-    let newData = [...data];
-
-    if (i < newData.length - 1) {
-      if (newData[i].value > newData[i + 1].value) {
-        swapElements(newData, i, i + 1);
+    const isSorted = () => {
+      for (let j = 0; j < data.length - 1; j++) {
+        if (data[j] > data[j + 1]) {
+          return false;
+        }
       }
+      return true;
+    };
 
-      let targetPosition =
-        data[i].value > data[i + 1].value
-          ? data[i].position
-          : data[i + 1].position;
-      pointerRef.current
-        .transition()
-        .duration(500)
-        .attr("transform", `translate(${targetPosition * 60 + 50}, ${10})`);
+    const handleNextStep = () => {
+      if (isPaused) return;
 
-      setI((prev) => prev + 1);
-    } else {
-      if (isSorted()) {
-        setIsSortedComplete(true);
+      if (i < data.length - 1) {
+        swapElements(i, i + 1);
+        i++;
+      } else {
+        if (isSorted()) {
+          isSortedComplete = true;
+          clearInterval(intervalId);
+          restartButton.style.display = 'block'; // Show the restart button only when sorting is complete
+        }
+        i = 0;
+        iteration++;
       }
-      setI(0);
-      setIteration((prev) => prev + 1);
-    }
+      render();
+      states.push([...data]);
+      currentStateIndex = states.length - 1;
+    };
 
-    setData(newData);
-  };
+    addElementButton.addEventListener('click', () => {
+      const newElement = parseInt(newElementInput.value);
+      if (!isNaN(newElement)) {
+        data.push(newElement);
+        newElementInput.value = '';
+        render();
+        states.push([...data]);
+        currentStateIndex = states.length - 1;
+      }
+    });
+
+    removeElementButton.addEventListener('click', () => {
+      if (data.length > 1) {
+        data.pop();
+        render();
+        states.push([...data]);
+        currentStateIndex = states.length - 1;
+      }
+    });
+
+    startButton.addEventListener('click', () => {
+      if (intervalId) return;
+      addElementButton.style.display = 'none';
+      removeElementButton.style.display = 'none';
+      newElementInput.style.display = 'none';
+      backButton.style.display = 'block'; // Show the back button when sorting starts
+      forwardButton.style.display = 'block'; // Show the forward button when sorting starts
+      intervalId = setInterval(handleNextStep, 1000);
+    });
+
+    pauseResumeButton.addEventListener('click', () => {
+      if (isPaused) {
+        isPaused = false;
+        pauseResumeButton.textContent = 'Pause';
+      } else {
+        isPaused = true;
+        pauseResumeButton.textContent = 'Resume';
+      }
+    });
+
+    backButton.addEventListener('click', () => {
+      if (currentStateIndex > 0) {
+        currentStateIndex--;
+        data = states[currentStateIndex];
+        render();
+        isPaused = true;
+        pauseResumeButton.textContent = 'Resume';
+      }
+    });
+
+    forwardButton.addEventListener('click', () => {
+      if (currentStateIndex < states.length - 1) {
+        currentStateIndex++;
+        data = states[currentStateIndex];
+        render();
+        isPaused = true;
+        pauseResumeButton.textContent = 'Resume';
+      }
+    });
+
+    restartButton.addEventListener('click', () => {
+      iteration = 0;
+      isSortedComplete = false;
+      i = 0;
+      data = [5, 3, 8, 10, 4, 2];
+      newElementInput.value = '';
+      restartButton.style.display = 'none'; // Hide the restart button after reset
+      addElementButton.style.display = 'inline-block';
+      removeElementButton.style.display = 'inline-block';
+      newElementInput.style.display = 'inline-block';
+      backButton.style.display = 'none'; // Hide the back button after reset
+      forwardButton.style.display = 'none'; // Hide the forward button after reset
+      clearInterval(intervalId);
+      intervalId = null;
+      states = [];
+      currentStateIndex = -1;
+      render();
+    });
+
+    render(); // Initial render
+  }, []); // Empty dependency array to run once on mount
 
   return (
-    <div>
-      <h1 className="font-bold text-secondary">Bubble Sort</h1>
-      <div
-        className="font-bold text-secondary"
-        id="iterationCounter"
-        style={{ textAlign: "center", marginBottom: "10px" }}
-      >
-        Iteration: {iteration}
-      </div>
-      <div ref={visualizationRef} id="visualization"></div>
-      {/* Move the button inside the component */}
-      <div
-        className={`flex justify-center items-center cursor-pointer ${
-          isSortedComplete ? "opacity-50 cursor-not-allowed" : ""
-        }`}
-        onClick={!isSortedComplete ? handleNextStep : undefined}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-12 h-12"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z"
-          />
-        </svg>
-      </div>
-    </div>
+    <div className="bubble-sort" ref={containerRef}></div> // Attach ref to the container
   );
 };
 
